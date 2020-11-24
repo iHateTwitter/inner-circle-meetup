@@ -7,8 +7,8 @@ Sidekiq::Web.set :sessions, false
 Sidekiq::Web.set :session_secret, Rails.application.credentials[:secret_key_base]
 Sidekiq::Extensions.enable_delay!
 
-credentials = Rails.application.credentials[Rails.env.to_sym]
-cache_address = "redis://#{credentials[:redis_host]}:#{credentials[:redis_port]}/0/sidekiq"
+credentials = Rails.application.credentials[Rails.env.to_sym] || {}
+cache_address = "redis://#{credentials[:redis_host] || "127.0.0.1"}:#{credentials[:redis_port] || "6379"}/0/sidekiq"
 
 Sidekiq.configure_server do |config|
   config.redis = { url: cache_address }
@@ -21,6 +21,4 @@ end
 
 Sidekiq.configure_client do |config|
   config.redis = { url: cache_address }
-
-  IndexLoadingPerformanceWorker.perform_at(3.seconds.from_now)
 end
