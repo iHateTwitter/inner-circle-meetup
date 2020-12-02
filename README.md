@@ -19,3 +19,6 @@ rails db:seed # 데이터베이스에 시드값 채우기
 
 rails s -b 0.0.0.0
 ```
+
+
+콘솔 확인은 rails c
