@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def client
-    @_client ||= Twitter::REST::Client.new do |config|
+    @client ||= Twitter::REST::Client.new do |config|
       config.consumer_key = ENV['TWITTER_APP_KEY']
       config.consumer_secret = ENV['TWITTER_APP_SECRET']
       config.access_token = self.token
@@ -32,9 +32,11 @@ class User < ApplicationRecord
     end
   end
 
-  private
+  class << self
+    private
 
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
+    def dummy_email(auth)
+      "#{auth.uid}-#{auth.provider}@example.com"
+    end
   end
 end
