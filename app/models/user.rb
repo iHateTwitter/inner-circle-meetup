@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+  has_many :participations
+  has_many :meetups, source: :meetup, through: :participations
+  has_many :hosted_meetups, class_name: "Meetup", foreign_key: :host_id
+
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
@@ -30,6 +34,10 @@ class User < ApplicationRecord
       config.access_token = self.token
       config.access_token_secret = self.secret
     end
+  end
+
+  def participate(meetup)
+    participations.create(meetup: meetup)
   end
 
   class << self
