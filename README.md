@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+* Requirements
+  * Ruby 2.7.0
+  * Rails 6.0.3
+  * Postgres
+  * Redis
 
-* Ruby version
+```sh
+brew install rbenv
+rbenv install 2.7.0
+bundle install
+rails db:create # 데이터베이스 생성
+rails db:migrate # 데이터베이스 마이그레이션
 
-* System dependencies
+rails db:seed # 데이터베이스에 시드값 채우기
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails s -b 0.0.0.0
+```
