@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :participations
   resources :meetups
-  root 'dummy#index'
+  root 'meetups#index'
+  get 'sign_in', to: 'dummy#sign_in'
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
