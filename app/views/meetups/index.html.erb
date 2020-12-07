@@ -24,6 +24,9 @@
               <dt class="sr-only">Title</dt>
               <dd class="group-hover:text-white leading-6 font-medium text-black">
                 <%= meetup.title %>
+                <% if meetup.host == current_user %>
+                  (+ 직접 주최)
+                <% end %>
               </dd>
             </div>
             <div>
