@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :participations
+  resources :participations, only: %i[index show]
   resources :meetups
   root 'meetups#index'
   get 'sign_in', to: 'dummy#sign_in'

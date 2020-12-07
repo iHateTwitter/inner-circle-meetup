@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Participations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Meetup</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participations.each do |participation| %>
+      <tr>
+        <td><%= participation.meetup_id %></td>
+        <td><%= participation.user_id %></td>
+        <td><%= link_to 'Show', participation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
