@@ -6,6 +6,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "rails/webpacker",
+    "alpinejs": "^2.7.3",
     "autoprefixer": "^10.0.4",
     "postcss": "^8.1.10",
     "tailwindcss": "^2.0.1",
