@@ -14,5 +14,16 @@
     </p>
   </div>
   <div class="mt-6 pt-3 flex flex-wrap mx-6 border-t">
+    <% if current_user %>
+      <% unless @meetup.participants.ids.include? current_user.id %>
+        <% if @meetup.host != current_user %>
+          <%= link_to join_meetup_path(@meetup), method: :put, class: "mx-1 px-3 py-2 round-lg text-white bg-green-500 hover:bg-green-300" do %>
+            참가 신청하기
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      로그인한 사람만 참가신청 가능하지롱
+    <% end %>
   </div>
 </div>

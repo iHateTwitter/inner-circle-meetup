@@ -5,7 +5,7 @@ class MeetupsController < ApplicationController
   # GET /meetups
   # GET /meetups.json
   def index
-    @meetups = Meetup.all.page(params[:page])
+    @meetups = Meetup.includes(:host, participations: [:user]).all.page(params[:page])
   end
 
   # GET /meetups/1
@@ -64,15 +64,15 @@ class MeetupsController < ApplicationController
     end
 
     checker = AvoidanceChecker.new(current_user)
-    joinable = checker.investigate(@meetup)
-    if joinable
+    avoidable = checker.investigate(@meetup)
+    unless avoidable
       @meetup.participants << current_user
       @meetup.save
 
       flash[:notice] = "참가신청 성공 어쩌구"
       redirect_to meetup_path(@meetup)
     else
-      flash[:error] = "아무튼 참가안됨 어쩌구"
+      flash[:error] = "아무튼 참가안됨 어쩌구 (사유 : 블락)"
       redirect_to meetups_path
     end
   end
@@ -90,7 +90,7 @@ class MeetupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meetup
-      @meetup = Meetup.find(params[:id])
+      @meetup = Meetup.includes(:participants).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
