@@ -36,6 +36,9 @@ gem 'omniauth-twitter'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# for pagination
+gem 'kaminari', '~> 1.2.0'
+
 group :development, :test do
   gem "action-cable-testing", "~> 0.5.0"
   
