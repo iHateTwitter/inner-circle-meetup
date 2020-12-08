@@ -26,12 +26,14 @@ class MeetupsController < ApplicationController
   # POST /meetups.json
   def create
     @meetup = Meetup.new(meetup_params)
+    @meetup.host = current_user
 
     respond_to do |format|
       if @meetup.save
         format.html { redirect_to @meetup, notice: 'Meetup was successfully created.' }
         format.json { render :show, status: :created, location: @meetup }
       else
+        Rails.logger.error @meetup.errors.to_json
         format.html { render :new }
         format.json { render json: @meetup.errors, status: :unprocessable_entity }
       end
@@ -41,6 +43,8 @@ class MeetupsController < ApplicationController
   # PATCH/PUT /meetups/1
   # PATCH/PUT /meetups/1.json
   def update
+    return head :unauthorized_user unless @meetup.host == current_user
+
     respond_to do |format|
       if @meetup.update(meetup_params)
         format.html { redirect_to @meetup, notice: 'Meetup was successfully updated.' }

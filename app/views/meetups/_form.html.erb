@@ -1,0 +1,30 @@
+<%= form_with(model: meetup, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :meetup_type %>
+    <%= f.select :meetup_type, ["Streaming", "Discord", "Hangout", "Offline"] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :participants_limit %>
+    <%= f.number_field :participants_limit, min: 0, max: 100 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
