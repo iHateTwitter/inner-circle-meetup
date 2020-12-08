@@ -10,9 +10,9 @@ class AvoidanceChecker
   def investigate(meetup)
     avoidable = false
 
-#    캐싱된 기피하는 대상이 포함되어 있으면 바로 false 리턴
-#    participant_ids = meetup.participants.ids
-#    return false
+    participant_ids = meetup.participants.ids
+    avoidable_candidates = user.avoidable_targets.ids
+    return false if participant_ids.intersect(avoidable_candidates).any?
 
     twitter_client = user.client
     investigating_user = twitter_client.user

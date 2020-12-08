@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :participations
   has_many :meetups, source: :meetup, through: :participations
   has_many :hosted_meetups, class_name: "Meetup", foreign_key: :host_id
+  has_many :avoidances
+  has_many :avoidable_targets, source: :target, through: :avoidances
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
