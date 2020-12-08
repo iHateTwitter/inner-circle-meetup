@@ -39,7 +39,7 @@
               <dt class="sr-only">participants</dt>
               <dd class="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-2">
                 <% meetup.participants.limit(5).each do |participant| %>
-                  <img src="http://placekitten.com/g/48/48?id=<%= rand(3000) %>" alt="<%= participant.nickname %>" width="48" height="48" class="w-7 h-7 rounded-full bg-gray-100 border-2 border-white" />
+                  <%= image_tag participant.image_url || "http://placekitten.com/g/48/48?r=#{rand(3000)}", alt: participant.nickname, width: 48, height: 48, class: "w-7 h-7 rounded-full bg-gray-100 border-2 border-white" %>
                 <% end %>
               </dd>
             </div>

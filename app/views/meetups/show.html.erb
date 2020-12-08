@@ -3,7 +3,7 @@
     <img class="absolute h-full w-full object-cover" src="">
   </div>
   <div class="relative shadow mx-auto h-24 w-24 -my-12 border-white rounded-full overflow-hidden border-4">
-    <img class="object-cover w-full h-full" src="http://placekitten.com/g/200/200">
+    <%= image_tag @meetup.host.image_url || "http://placekitten.com/g/200/200", width: 200, height: 200, class: "object-cover w-full h-full" %>
   </div>
   <div class="mt-16">
     <h1 class="text-lg text-center font-semibold">
