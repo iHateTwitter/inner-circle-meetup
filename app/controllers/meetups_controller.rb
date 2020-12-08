@@ -1,5 +1,5 @@
 class MeetupsController < ApplicationController
-  before_action :set_meetup, only: [:show, :edit, :update, :destroy]
+  before_action :set_meetup, only: %I[show edit update destroy join]
   before_action :authenticate_user!, only: %I[new create edit update destroy]
 
   # GET /meetups
@@ -49,6 +49,27 @@ class MeetupsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @meetup.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # PUT /meetups/1/join
+  def join
+    if @meetup.participants.ids.include? current_user.id
+      flash[:notice] = "이미 참가신청한 모임 어쩌구"
+      return redirect_to meetup_path(@meetup)
+    end
+
+    checker = AvoidanceChecker.new(current_user)
+    joinable = checker.investigate(@meetup)
+    if joinable
+      @meetup.participants << current_user
+      @meetup.save
+
+      flash[:notice] = "참가신청 성공 어쩌구"
+      redirect_to meetup_path(@meetup)
+    else
+      flash[:error] = "아무튼 참가안됨 어쩌구"
+      redirect_to meetups_path
     end
   end
 
