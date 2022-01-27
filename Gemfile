@@ -22,7 +22,7 @@ gem "twitter"
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.1'
-gem 'sidekiq', '6.0.4'
+gem 'sidekiq', '6.4.0'
 gem 'sidekiq-cron'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
