@@ -120,7 +120,7 @@ GEM
     buftok (0.2.0)
     builder (3.2.4)
     byebug (11.1.3)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.10)
     connection_pool (2.2.3)
     crack (0.4.4)
     crass (1.0.6)
@@ -151,8 +151,8 @@ GEM
     fugit (1.3.9)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.3)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     hashdiff (1.0.1)
     hashie (4.1.0)
     http (4.4.1)
@@ -166,7 +166,7 @@ GEM
     http-parser (1.2.2)
       ffi-compiler
     http_parser.rb (0.6.0)
-    i18n (1.8.5)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
@@ -195,10 +195,12 @@ GEM
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (1.0.0)
-    mimemagic (0.3.5)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.2)
+    minitest (5.17.0)
     msgpack (1.3.3)
     multipart-post (2.1.1)
     mustermann (1.1.1)
@@ -349,7 +351,7 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
@@ -370,7 +372,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yard (0.9.25)
-    zeitwerk (2.4.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
